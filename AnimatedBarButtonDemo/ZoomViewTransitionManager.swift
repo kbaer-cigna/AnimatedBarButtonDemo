@@ -50,9 +50,9 @@ class ZoomViewTransitionManager: NSObject, UIViewControllerAnimatedTransitioning
         
         UIView.animateWithDuration(duration,
                                    delay: 0.0,
-                                   usingSpringWithDamping: 0.4,
+                                   usingSpringWithDamping: 1.0,
                                    initialSpringVelocity: 0,
-                                   options: .CurveEaseInOut, //.CurveLinear,
+                                   options: .CurveEaseInOut,
                                    animations: {
                                     chatView.transform = self.presenting ?
                                         CGAffineTransformIdentity : scaleTransform

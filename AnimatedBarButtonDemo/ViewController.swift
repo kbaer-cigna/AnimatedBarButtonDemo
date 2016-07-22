@@ -23,8 +23,14 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIViewCo
     
     
     @IBAction func spinIcon() {
-        rightBarButton.customView!.transform = CGAffineTransformMakeRotation(CGFloat(M_PI * 1.0))
-        UIView.animateWithDuration(1.0, animations: {self.rightBarButton.customView!.transform = CGAffineTransformIdentity}, completion: nil)
+        
+//        UIView.animateWithDuration(0.5, animations: { self.rightBarButton.customView!.transform = CGAffineTransformRotate(self.rightBarButton.customView!.transform, CGFloat(M_PI_2)) }, completion: nil)
+        
+        let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation")
+        rotateAnimation.fromValue = 0.0
+        rotateAnimation.toValue = CGFloat(M_PI * 2.0)
+        rotateAnimation.duration = 0.5
+        self.rightBarButton?.customView!.layer.addAnimation(rotateAnimation, forKey: nil)
     }
     
     @IBAction func zoomIcon() {
@@ -32,7 +38,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIViewCo
         UIView.animateWithDuration(1.0,
                                    delay: 0.0,
                                    usingSpringWithDamping: 0.2,
-                                   initialSpringVelocity: 10,
+                                   initialSpringVelocity: 20,
                                    options: .CurveLinear,
                                    animations: {
                                     self.rightBarButton?.customView!.transform = CGAffineTransformMakeScale(1.0, 1.0)
@@ -41,11 +47,11 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIViewCo
     }
     
     @IBAction func twistIcon() {
-        self.rightBarButton?.customView!.transform = CGAffineTransformMakeRotation(CGFloat(M_PI / 3.0))
+        self.rightBarButton?.customView!.transform = CGAffineTransformMakeRotation(CGFloat(M_PI/2.0))
         UIView.animateWithDuration(1.0,
-                                   delay: 0.5,
+                                   delay: 0,
                                    usingSpringWithDamping: 0.2,
-                                   initialSpringVelocity: 5,
+                                   initialSpringVelocity: 10,
                                    options: .CurveLinear,
                                    animations: {
                                     self.rightBarButton?.customView!.transform = CGAffineTransformIdentity

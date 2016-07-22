@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Main-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="AnimatedBarButtonDemo" customModuleProvider="target" sceneMemberID="viewController">
@@ -73,7 +73,7 @@
                     <toolbarItems>
                         <barButtonItem id="QdQ-vG-ysp"/>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" id="uSF-Iv-mfv">
+                    <navigationItem key="navigationItem" title="Main" id="uSF-Iv-mfv">
                         <connections>
                             <outlet property="rightBarButtonItem" destination="QdQ-vG-ysp" id="AaT-TO-Nij"/>
                         </connections>
