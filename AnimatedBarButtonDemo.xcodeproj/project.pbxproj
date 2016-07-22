@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		090F119B1D4135A2007DC997 /* ZoomViewTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090F119A1D4135A2007DC997 /* ZoomViewTransitionManager.swift */; };
 		0949F19E1D402DED008FFE0B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0949F19D1D402DED008FFE0B /* AppDelegate.swift */; };
 		0949F1A01D402DED008FFE0B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0949F19F1D402DED008FFE0B /* ViewController.swift */; };
 		0949F1A31D402DED008FFE0B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0949F1A11D402DED008FFE0B /* Main.storyboard */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		090F119A1D4135A2007DC997 /* ZoomViewTransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoomViewTransitionManager.swift; sourceTree = "<group>"; };
 		0949F19A1D402DED008FFE0B /* AnimatedBarButtonDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnimatedBarButtonDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0949F19D1D402DED008FFE0B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0949F19F1D402DED008FFE0B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -56,6 +58,7 @@
 			children = (
 				0949F19D1D402DED008FFE0B /* AppDelegate.swift */,
 				0949F19F1D402DED008FFE0B /* ViewController.swift */,
+				090F119A1D4135A2007DC997 /* ZoomViewTransitionManager.swift */,
 				0949F1A11D402DED008FFE0B /* Main.storyboard */,
 				0949F1A41D402DED008FFE0B /* Assets.xcassets */,
 				0949F1A61D402DED008FFE0B /* LaunchScreen.storyboard */,
@@ -137,6 +140,7 @@
 			files = (
 				0949F1A01D402DED008FFE0B /* ViewController.swift in Sources */,
 				0949F19E1D402DED008FFE0B /* AppDelegate.swift in Sources */,
+				090F119B1D4135A2007DC997 /* ZoomViewTransitionManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,6 +292,7 @@
 				0949F1AE1D402DED008FFE0B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

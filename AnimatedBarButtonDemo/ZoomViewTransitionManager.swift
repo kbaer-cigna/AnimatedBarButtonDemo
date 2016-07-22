@@ -1,52 +1,69 @@
 //
-//  ZoomPresentViewTransition.swift
+//  ZoomViewTransitionManager.swift
 //  AnimatedBarButtonDemo
 //
-//  Created by M77578 on 7/21/16.
+//  Created by Ken Baer on 7/21/16.
 //  Copyright © 2016 M77578. All rights reserved.
 //
 
 import UIKit
 
-class ZoomPresentViewTransition: NSObject, UIViewControllerAnimatedTransitioning {
+class ZoomViewTransitionManager: NSObject, UIViewControllerAnimatedTransitioning {
 
+    var duration = 1.0
+    var presenting  = true
+    var originFrame = CGRect.zero
+    
     func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
-        return 2.0
+        return duration
     }
     
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
         
-        guard let fromVC = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey),
-            let containerView = transitionContext.containerView(),
-            let toVC = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) else {
-                return
+        let containerView = transitionContext.containerView()!
+        let toView = transitionContext.viewForKey(UITransitionContextToViewKey)!
+        let chatView = presenting ? toView : transitionContext.viewForKey(UITransitionContextFromViewKey)!
+
+        let initialFrame = presenting ? originFrame : chatView.frame
+        let finalFrame = presenting ? chatView.frame : originFrame
+        
+        let xScaleFactor = presenting ?
+            initialFrame.width / finalFrame.width :
+            finalFrame.width / initialFrame.width
+        
+        let yScaleFactor = presenting ?
+            initialFrame.height / finalFrame.height :
+            finalFrame.height / initialFrame.height
+        
+        let scaleTransform = CGAffineTransformMakeScale(xScaleFactor, yScaleFactor)
+        
+        if presenting {
+            chatView.transform = scaleTransform
+            chatView.center = CGPoint(
+                x: CGRectGetMidX(initialFrame),
+                y: CGRectGetMidY(initialFrame))
+            chatView.clipsToBounds = true
         }
         
-        let initialFrame = toVC.view.frame
-        let finalFrame = transitionContext.finalFrameForViewController(toVC)
+        containerView.addSubview(toView)
+        containerView.bringSubviewToFront(chatView)
         
-        guard let iconFrame = fromVC.navigationItem.rightBarButtonItem?.customView?.frame else { return }
-        let xFactor = iconFrame.size.width / initialFrame.size.width
-        let yFactor = iconFrame.size.height / initialFrame.size.height
-        
-        let duration = transitionDuration(transitionContext)
-        
-        UIView.animateKeyframesWithDuration(
-            duration,
-            delay: 0,
-            options: .CalculationModeCubic,
-            animations: {
-                UIView.addKeyframeWithRelativeStartTime(0.0, relativeDuration: 1/3, animations: {
-                    fromVC.view.layer.transform = CGAffineTransformMakeScale(scaleFactor, scaleFactor)
-                })
-                
-            },
-            completion: { _ in
-                toVC.view.hidden = false
-                fromVC.view.layer.transform = AnimationHelper.yRotation(0.0)
-                transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
+        UIView.animateWithDuration(duration,
+                                   delay: 0.0,
+                                   usingSpringWithDamping: 0.4,
+                                   initialSpringVelocity: 0,
+                                   options: .CurveEaseInOut, //.CurveLinear,
+                                   animations: {
+                                    chatView.transform = self.presenting ?
+                                        CGAffineTransformIdentity : scaleTransform
+                                    
+                                    chatView.center = CGPoint(x: CGRectGetMidX(finalFrame),
+                                        y: CGRectGetMidY(finalFrame))
+                                    
+            }, completion:{_ in
+                transitionContext.completeTransition(true)
         })
-
+        
     }
 
 }
